@@ -1,6 +1,7 @@
 package com.sapo.edu.backend.model;
 
 import com.sapo.edu.backend.model.enumclasses.Roles;
+import com.sapo.edu.backend.model.enumclasses.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,16 +41,26 @@ public class Users implements UserDetails {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    UserStatus status;
+
+    @Column(name = "so_tien_du_no")
+    private double soTienDuNo = 0;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "createdAt", nullable = false, updatable = false)
+    @Column(name = "last_checked_at")
+    private Date lastCheckedAt;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "updatedAt", nullable = false)
+    @Column(name = "updated_at")
     private Date updatedAt;
 
-    // Tự động gán thời điểm hiện tại
+    // Automatically update the lastCheckedAt field to the current date
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();
@@ -62,7 +73,6 @@ public class Users implements UserDetails {
 
 
     // implement User Detail interface's method
-
 
     // returns a list of roles that the user has
     @Override

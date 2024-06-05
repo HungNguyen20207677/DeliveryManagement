@@ -24,16 +24,10 @@ public class Orders {
     private Integer orderId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shipper_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Shippers shipper;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shop_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Shops shop;
+    private Users user;
 
     @Column(name = "customer_name")
     private String customerName;
@@ -58,21 +52,25 @@ public class Orders {
 
     @Column(name = "ship_cost_paid_by")
     @Enumerated(value = EnumType.STRING)
-    private ShipCostPaidBy shipCostPaidBy;
+    ShipCostPaidBy shipCostPaidBy;
 
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
-    private OrderStatus status;
+    OrderStatus status;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "createdAt", nullable = false, updatable = false)
+    @Column(name = "last_checked_at", nullable = false, updatable = false)
+    private Date lastCheckedAt;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "updatedAt", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private Date updatedAt;
 
-    // Tự động gán thời điểm hiện tại
+    // Automatically assign the current date and time to createdAt fields before persisting
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();

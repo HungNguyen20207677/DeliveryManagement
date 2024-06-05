@@ -1,7 +1,7 @@
 package com.sapo.edu.backend.model.enumclasses;
 
 public enum UserStatus {
-    ACTIVE,
+    UNACTIVATED,
 
-    INACTIVE
+    ACTIVATED
 }
