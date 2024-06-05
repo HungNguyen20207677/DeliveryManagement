@@ -2,6 +2,7 @@ package com.sapo.edu.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sapo.edu.backend.model.enumclasses.OrderStatus;
+import com.sapo.edu.backend.model.enumclasses.ShipCostPaidBy;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -20,7 +21,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private int orderId;
+    private Integer orderId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "shipper_id", nullable = false)

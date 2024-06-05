@@ -1,4 +1,4 @@
-package com.sapo.edu.backend.model;
+package com.sapo.edu.backend.model.enumclasses;
 
 public enum ShipCostPaidBy {
     SHOP,

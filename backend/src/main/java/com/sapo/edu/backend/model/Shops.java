@@ -17,7 +17,7 @@ public class Shops {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private Integer userId;
 
 //    @Column(name = "orders_list")
 //    private Orders ordersList;
