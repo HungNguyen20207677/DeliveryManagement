@@ -36,16 +36,13 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection as we're using JWT
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(HttpMethod.GET).permitAll() // Allow all GET requests without authentication
-                        .requestMatchers(HttpMethod.POST).permitAll() // Allow all GET requests without authentication
-                        .requestMatchers(HttpMethod.PUT).permitAll() // Allow all GET requests without authentication
-                        .requestMatchers(HttpMethod.DELETE).permitAll() // Allow all GET requests without authentication
-                        
-//                        .requestMatchers("/login/**", "/register/**").permitAll() // Allow unauthenticated access to login and register endpoints
-//                        .requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("ADMIN") // Require ADMIN authority for POST requests to /admin/**
-//                        .requestMatchers(HttpMethod.PUT, "/admin/**").hasAuthority("ADMIN") // Require ADMIN authority for PUT requests to /admin/**
-//                        .requestMatchers(HttpMethod.DELETE, "/admin/**").hasAuthority("ADMIN") // Require ADMIN authority for DELETE requests to /admin/**
-                        .anyRequest().authenticated() // All other requests require authentication
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/register").hasAuthority("ADMIN")
+                        .requestMatchers("/orders-management/**").hasAuthority("DISTRIBUTOR")
+                        .requestMatchers("/shippers-management/**").hasAuthority("MANAGER")
+                        .requestMatchers("/shops-management/**").hasAuthority("MANAGER")
+                        .requestMatchers(HttpMethod.PUT,"/orders-management/orders/{id}").hasAuthority("MANAGER")
+                        .anyRequest().hasAnyAuthority("ADMIN") // Allow ADMIN to access every endpoint
                 )
                 .userDetailsService(userDetailsService) // Set the custom UserDetailsService for authentication
                 .sessionManagement(session -> session
