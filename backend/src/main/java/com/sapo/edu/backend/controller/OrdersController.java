@@ -21,6 +21,11 @@ public class OrdersController {
     @Autowired
     private OrdersRepository ordersRepository;
 
+    @GetMapping("/orders")
+    public List<Orders> getAllCategories() {
+        // Display in web page
+        return ordersRepository.findAll();
+    }
 
     @GetMapping("/orders/{id}")
     public List<Orders> getOrderById(@PathVariable("id") int id) {
