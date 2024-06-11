@@ -54,6 +54,8 @@ public class OrdersServiceImpl implements OrdersService {
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
+
+    //thong ke
     public List<Object[]> getDataByMonth(){
         List<Object[]> value = ordersRepository.getDataByMonth();
         if(value.isEmpty()){

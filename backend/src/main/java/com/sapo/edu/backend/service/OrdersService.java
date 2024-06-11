@@ -11,11 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 @Service
 public interface OrdersService {
-//    Orders getOrderstById(Integer id);
 
     Page<Orders> findAll(PageRequest pageable);
-//    List<Orders> findSalesStaff(Integer staffId, ReceiptStaffBody receiptStaffBody);
-//    List<Object[]> sumBySalesStaff(ReceiptStaffBody receiptStaffBody);
+
     List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
+    List<Object[]> getDataByMonth();
+    List<Object[]> getDataById();
 
 }

@@ -40,6 +40,30 @@ public class OrdersController {
                         return ResponseEntity.ok().body(sum);
                 } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa phiếu giao hàng: " + e.getMessage());}
         }
+    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+    @GetMapping(value= "/data-by-month/")
+    public ResponseEntity<?> dataByMonth(){
+        try {
+            List<Object[]> value = ordersService.getDataByMonth();
+            if(value.isEmpty()){
+                return ResponseEntity.badRequest().body("không có dữ liệu");
+            }
+            return ResponseEntity.ok(value);
+        }
+        catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
+    }
 
+    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+    @GetMapping(value= "/data-by-id/")
+    public ResponseEntity<?> dataById(){
+        try {
+            List<Object[]> value = ordersService.getDataById();
+            if(value.isEmpty()){
+                return ResponseEntity.badRequest().body("không có dữ liệu");
+            }
+            return ResponseEntity.ok(value);
+        }
+        catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
+    }
 
 }

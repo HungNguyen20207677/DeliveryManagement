@@ -1,19 +1,9 @@
 
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8×üàŒ€2J$525317d1-71ee-4c66-b013-3070d0d917ae
-n
-java:S1452""&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8âö÷€2J$1150c18a-6047-470a-a585-2261f69e49b8
-
-java:S1128">Remove this unused import 'com.sapo.edu.backend.model.Orders'.(ÈÖµÃ8…”§¥€2J$7e416a94-ba80-40f2-841b-6a9b417875f0
-
-java:S1128"MRemove this unused import 'com.sapo.edu.backend.repository.OrdersRepository'.(¶áÙ8ˆ”§¥€2J$71ba9802-8a2f-4c86-a2eb-5c4cc498fd07
-
-java:S1128"URemove this unused import 'com.sapo.edu.backend.service.implement.OrdersServiceImpl'.(ş£…€şÿÿÿÿ8Š”§¥€2J$e24393ab-06e4-47d1-9f35-8c39a2f0a858
-‰
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8‹”§¥€2J$adfd88f2-f556-456e-9891-b1490d111cc4
-‹
-java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8”§¥€2J$31b55090-4280-421d-8671-6e40aeb5f7d9
-
-java:S1128"FRemove this unused import 'org.springframework.stereotype.Controller'.(øŠ—Öùÿÿÿÿ8ø•î£€2J$8f3e869b-0731-42b4-9384-32ff7caf805a
-l
-java:S1128")Remove this unused import 'java.net.URI'.(Ö¦¨°8”§¥€2J$aa5c182b-b48b-483a-8d03-ddef2e4539fa
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹Ï®·€2
+H
+java:S1452""&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8–Ï®·€2
+H
+java:S1452-"&Remove usage of generic wildcard type.(åÁ¢Âûÿÿÿÿ8Ï®·€2
+C
+java:S1452:"&Remove usage of generic wildcard type.(º¤ÈÛ8¥Ï®·€2
