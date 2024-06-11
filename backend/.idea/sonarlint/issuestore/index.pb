@@ -31,3 +31,7 @@ Esrc/main/java/com/sapo/edu/backend/controller/ShippersController.java,e\6\e68c
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 d
 4src/main/java/com/sapo/edu/backend/model/Orders.java,d\e\de3185956a760ab7f54712996220a6c694221a2f
+c
+3src/main/java/com/sapo/edu/backend/model/Users.java,4\7\47c6a76d0e9cd4dc0d44868590eb00b0c74a2543
+j
+:src/main/java/com/sapo/edu/backend/BackendApplication.java,0\e\0ebdf2e7e767df4ec54e6ad0fc86730c7578f0ca
