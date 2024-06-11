@@ -4,19 +4,20 @@ import com.sapo.edu.backend.model.Orders;
 import com.sapo.edu.backend.model.Users;
 import com.sapo.edu.backend.repository.OrdersRepository;
 import com.sapo.edu.backend.repository.UsersRepository;
-import com.sapo.edu.backend.service.OrdersService;
-import com.sapo.edu.backend.service.UsersService;
+import com.sapo.edu.backend.specification.OrdersSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/orders-management")
@@ -67,7 +68,6 @@ public class OrdersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newOrder);
     }
 
-
     @PutMapping("/orders/{id}")
     public ResponseEntity<Orders> updateOrder(@PathVariable("id") int id, @RequestBody Orders orderDetails) {
         // Retrieve the order by ID
@@ -112,11 +112,60 @@ public class OrdersController {
         order.setShipCostPaidBy(orderDetails.getShipCostPaidBy());
         order.setStatus(orderDetails.getStatus());
         order.setLastCheckedAt(orderDetails.getLastCheckedAt());
-        // Update other fields as necessary
+        // Note: createdAt should not be updated, so it's not included here
 
         // Save the updated order
         Orders updatedOrder = ordersRepository.save(order);
 
         return ResponseEntity.ok(updatedOrder);
+    }
+
+    @GetMapping("/orders/search")
+    public ResponseEntity<List<Orders>> searchOrders(
+            @RequestParam(required = false) String customerName,
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) Integer orderId,
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date createdAfter,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date createdBefore) {
+        
+        List<Specification<Orders>> specs = new ArrayList<>();
+        
+        if (customerName != null && !customerName.isEmpty()) {
+            specs.add(OrdersSpecification.hasCustomerName(customerName));
+        }
+        
+        if (address != null && !address.isEmpty()) {
+            specs.add(OrdersSpecification.hasAddress(address));
+        }
+        
+        if (orderId != null) {
+            specs.add(OrdersSpecification.hasOrderId(orderId));
+        }
+        
+        if (userName != null && !userName.isEmpty()) {
+            specs.add(OrdersSpecification.hasUserName(userName));
+        }
+        
+        if (createdAfter != null) {
+            specs.add(OrdersSpecification.createdAfter(createdAfter));
+        }
+        
+        if (createdBefore != null) {
+            specs.add(OrdersSpecification.createdBefore(createdBefore));
+        }
+        
+        Specification<Orders> resultSpec = specs.stream()
+                .reduce((spec1, spec2) -> spec1.and(spec2))
+                .orElse(null);
+
+        List<Orders> orders;
+        if (resultSpec != null) {
+            orders = ordersRepository.findAll(resultSpec);
+        } else {
+            orders = ordersRepository.findAll();
+        }
+
+        return ResponseEntity.ok(orders);
     }
 }
