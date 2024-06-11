@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public interface OrdersService {
 
-    Page<Orders> findAll(PageRequest pageable);
 
+    List<Orders> findSalesStaff(Integer staffId);
     List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
     List<Object[]> getDataByMonth();
     List<Object[]> getDataById();

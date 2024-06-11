@@ -27,8 +27,8 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     List<Object[]> getTotalMoneyByMonth(Date date);
 
     // Tìm phiếu giao hang theo shipperID
-//    @Query("SELECT r FROM Orders r WHERE r.shipper_id.user_id = :shipper_id ")
-//    List<Orders> findByShipperId( Integer staffId);
+    @Query("SELECT r FROM Orders r WHERE r.user.id = :staffId ")
+    List<Orders> findByShipperId( Integer staffId);
 
 
     //tinh tong tien theo nhan vien ship moc thoi gian

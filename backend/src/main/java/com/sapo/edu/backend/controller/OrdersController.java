@@ -26,6 +26,21 @@ public class OrdersController {
         private OrdersService ordersService;
         //danh sach don hang theo status
 
+        //danh sach don hang theo shipper id
+        @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+        @PostMapping (value= "/{staffId}")
+        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer staffId, @RequestBody ReceiptStaffBody receiptStaffBody){
+            try {
+                List<Orders> staff = ordersService.findSalesStaff(staffId);
+                if(staff.isEmpty()){
+                    return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
+                }
+                return ResponseEntity.ok(staff);
+            }
+            catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa phiếu thu: " + e.getMessage());}
+
+        }
+
         //tong tien COD theo id shop
 
         //tổng tien ship
@@ -65,5 +80,7 @@ public class OrdersController {
         }
         catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
     }
+
+
 
 }

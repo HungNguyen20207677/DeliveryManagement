@@ -35,3 +35,11 @@ c
 3src/main/java/com/sapo/edu/backend/model/Users.java,4\7\47c6a76d0e9cd4dc0d44868590eb00b0c74a2543
 j
 :src/main/java/com/sapo/edu/backend/BackendApplication.java,0\e\0ebdf2e7e767df4ec54e6ad0fc86730c7578f0ca
+~
+Nsrc/main/java/com/sapo/edu/backend/service/security/AuthenticationService.java,7\2\7279ea1f83bca3c631e0f0f2b7e0927f4bc93d2d
+s
+Csrc/main/java/com/sapo/edu/backend/service/security/JwtService.java,2\a\2af6de7dcabf1827f2d89ab986b3391ffe1e6664
+‡
+Wsrc/main/java/com/sapo/edu/backend/service/security/filter/JwtAuthenticationFilter.java,f\f\ff5ffa45103ea3cd0562ef6d0dccbd7666605495
+~
+Nsrc/main/java/com/sapo/edu/backend/service/security/config/SecurityConfig.java,0\2\022ea50aed756869dc4c5bb5cd65cdebe71e8ee0

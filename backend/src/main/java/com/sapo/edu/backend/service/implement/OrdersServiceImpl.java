@@ -27,13 +27,12 @@ public class OrdersServiceImpl implements OrdersService {
         this.ordersRepository = ordersRepository;
     }
 
-    public Page<Orders> findAll(PageRequest pageable) {
-        Page<Orders> find = ordersRepository.findAll(pageable);
-        if (find.isEmpty()) {
-            throw new ErrorException("không tìm thấy phiếu thu");
-        }
-        return find;
+    // sum theo id nhan vien
+    public List<Orders> findSalesStaff(Integer staffId) {
+        return ordersRepository.findByShipperId(staffId);
     }
+
+
     public List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody) {
         if (receiptStaffBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");
