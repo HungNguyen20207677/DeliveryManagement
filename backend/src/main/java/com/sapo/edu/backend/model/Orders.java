@@ -29,6 +29,12 @@ public class Orders {
     @JsonIgnore
     private Users user;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fk_shop", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Shops shop;
+
     @Column(name = "customer_name")
     private String customerName;
 
