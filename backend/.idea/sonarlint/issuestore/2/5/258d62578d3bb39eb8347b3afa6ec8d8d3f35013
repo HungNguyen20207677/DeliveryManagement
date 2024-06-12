@@ -1,7 +1,2 @@
 
-˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»öÿÿÿÿÿ8ÿ¿ü¼€2J$f90815a7-8efe-46c4-8a7f-67730b3063fb
-~	java:S125"<This block of commented-out lines of code should be removed.(’‰í8Æª¤À€2J$75abd842-5d77-4fb9-b577-1baa771bf174
-‰
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8èŠì¿€2J$34a2e2eb-f417-4ed1-ab56-e167345f8983
-‹
-java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8èŠì¿€2J$5a5d81e6-1450-471d-8487-133eeb9f6256
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íºåú8ÿ¿ü¼€2J$48304a65-9df3-4dd4-b200-3c816ae805c4

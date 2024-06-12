@@ -1,13 +1,9 @@
 package com.sapo.edu.backend.repository;
 
-
 import com.sapo.edu.backend.model.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
-
-
-
 
 import java.util.Date;
 import java.util.List;
@@ -25,15 +21,15 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     List<Object[]> getTotalMoneyByMonth(Date date);
 
     // so luong don hang theo status
-    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'PENDING'")
+    @Query("SELECT COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'PENDING'")
     List<Object[]> getOrdersByPending();
-    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'CANCELED'")
+    @Query("SELECT COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'CANCELED'")
     List<Object[]> getOrdersByCanceled();
-    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'SHIPPING'")
+    @Query("SELECT COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'SHIPPING'")
     List<Object[]> getOrdersByShipping();
-    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'AWAITING_PAYMENT'")
+    @Query("SELECT COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'AWAITING_PAYMENT'")
     List<Object[]> getOrdersByAwaiting();
-    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'COMPLETED'")
+    @Query("SELECT COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'COMPLETED'")
     List<Object[]> getOrdersByCompleted();
 
     // danh sach don hang theo shipper_id
@@ -44,6 +40,6 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     @Query("SELECT YEAR(r.createdAt) AS Year, MONTH(r.createdAt) AS Month, SUM(r.shippingCost) AS TotalMoneyValue FROM Orders r WHERE r.status = 'COMPLETED' GROUP BY YEAR(r.createdAt), MONTH(r.createdAt) ORDER BY YEAR(r.createdAt), MONTH(r.createdAt)")
     List<Object[]> getDataByMonth();
 
-    @Query("SELECT YEAR(r.createdAt) AS Year, MONTH(r.createdAt) AS Month, COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'COMPLETED' GROUP BY YEAR(r.createdAt), MONTH(r.createdAt) ORDER BY YEAR(r.createdAt), MONTH(r.createdAt)")
+    @Query("SELECT YEAR(r.createdAt) AS Year, MONTH(r.createdAt) AS Month, COUNT(r.id) AS CountIdValue FROM Orders r WHERE r.status = 'COMPLETED' GROUP BY YEAR(r.createdAt), MONTH(r.createdAt) ORDER BY YEAR(r.createdAt), MONTH(r.createdAt)")
     List<Object[]> getDataById();
 }

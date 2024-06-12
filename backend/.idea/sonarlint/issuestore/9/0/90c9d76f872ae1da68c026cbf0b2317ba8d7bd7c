@@ -1,10 +1,6 @@
 
-˜	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‡¹¿ûÿÿÿÿ8´ü›Â€2J$ff837370-ab66-4adf-9fda-7b45cabd51eb
-—
-java:S1128	"ORemove this unused import 'com.sapo.edu.backend.model.enumclasses.OrderStatus'.(ÖË¨Åøÿÿÿÿ8¨§’Í€2J$b36f7cd8-1ac5-43a6-b089-53b0f9fbaf1c
-‰
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âŽŽüÿÿÿÿ8©§’Í€2J$c9f8e16f-998c-434f-94d0-a82164f2b891
-‹
-java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8©§’Í€2J$eb189ded-36cc-4086-8cc8-9cc9dc22fb77
+˜	java:S117&"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à»íøýÿÿÿÿ8´ü›Â€2J$57c672d8-7f2d-4bdc-8272-c1bf5d9553d8
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ëÿ©Ü€2J$225d1561-9f84-43cb-806a-3eb1b4d90142
 q
-java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+8ª§’Í€2J$f7a587db-53f5-4bb9-9f40-d132d20f75af
+java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+8À»³Ü€2J$66c10a8d-d08e-4ba9-9269-5616df268dfa

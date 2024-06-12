@@ -6,7 +6,6 @@ import com.sapo.edu.backend.exception.ErrorException;
 import com.sapo.edu.backend.repository.OrdersRepository;
 
 import com.sapo.edu.backend.model.Orders;
-import com.sapo.edu.backend.model.enumclasses.OrderStatus;
 import com.sapo.edu.backend.service.OrdersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +13,31 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 @Service
 public class OrdersServiceImpl implements OrdersService {
-
+    @Autowired
     private final OrdersRepository ordersRepository;
 
     @Autowired
     public OrdersServiceImpl(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
-
-    // sum theo id nhan vien
-    public List<Orders> findSalesStaff(Integer shipper_id) {
-        return ordersRepository.findByShipperId(shipper_id);
+    // danh sach don hang
+    public Page<Orders> findAll(PageRequest pageable) {
+        Page<Orders> find = ordersRepository.findAll(pageable);
+        if (find.isEmpty()) {
+            throw new ErrorException("không tìm thấy đơn hàng");
+        }
+        return find;
     }
 
+    // danh sach don hang theo id shipper
+    public List<Orders> findShipper(Integer shipper_id) {
+        return ordersRepository.findByShipperId(shipper_id);
+    }
 
     public List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody) {
         if (receiptStaffBody == null) {

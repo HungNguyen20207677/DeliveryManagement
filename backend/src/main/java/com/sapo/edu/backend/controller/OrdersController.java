@@ -2,9 +2,7 @@ package com.sapo.edu.backend.controller;
 
 import com.sapo.edu.backend.dto.StatusBody;
 import com.sapo.edu.backend.model.Orders;
-import com.sapo.edu.backend.repository.OrdersRepository;
 import com.sapo.edu.backend.dto.ReceiptStaffBody;
-import com.sapo.edu.backend.service.implement.OrdersServiceImpl;
 import com.sapo.edu.backend.service.OrdersService;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +21,18 @@ import java.util.List;
 @RequestMapping(value = "orders-management/orders")
 public class OrdersController {
 
-        @Autowired
-        private OrdersService ordersService;
+    @Autowired
+    private OrdersService ordersService;
+
+    @GetMapping(value = "/")
+    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+    public ResponseEntity<Page<Orders>> getAllReceipt(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "30") int size) {
+            PageRequest pageable = PageRequest.of(page, size);
+            Page<Orders> orders = ordersService.findAll(pageable);
+            return ResponseEntity.ok(orders);
+    }
         //so luong don hang theo status
         @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
         @GetMapping(value= "/total?status={statusValue}")
@@ -44,7 +52,7 @@ public class OrdersController {
         @PostMapping (value= "/{shipper_id}")
         public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer shipper_id){
             try {
-                List<Orders> staff = ordersService.findSalesStaff(shipper_id);
+                List<Orders> staff = ordersService.findShipper(shipper_id);
                 if(staff.isEmpty()){
                     return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
                 }
@@ -95,7 +103,5 @@ public class OrdersController {
         }
         catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
     }
-
-
 
 }
