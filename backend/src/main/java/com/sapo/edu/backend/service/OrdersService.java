@@ -13,9 +13,15 @@ import java.util.List;
 public interface OrdersService {
 
 
-    List<Orders> findSalesStaff(Integer staffId);
+    List<Orders> findSalesStaff(Integer shipper_id);
     List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
-    List<Object[]> getDataByMonth();
     List<Object[]> getDataById();
+    List<Object[]> getDataByMonth();
+//    List<Object[]> getOrdersByPending();
+//    List<Object[]> getOrdersByCanceled();
+//    List<Object[]> getOrdersByShipping();
+//    List<Object[]> getOrdersByAwaiting();
+//    List<Object[]> getOrdersByCompleted();
+
 
 }

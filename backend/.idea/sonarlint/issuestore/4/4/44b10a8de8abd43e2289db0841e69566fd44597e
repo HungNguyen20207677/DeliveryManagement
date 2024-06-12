@@ -1,11 +1,32 @@
 
+š
+java:S1192#"WDefine a constant instead of duplicating this literal "khÃ´ng cÃ³ dá»¯ liá»‡u" 3 times.(Ô¶ã³8û¿ÓÛ€2J$ad30d190-d787-4d68-a032-293009085868
+—
+java:S1192'"TDefine a constant instead of duplicating this literal "Lá»—i mÃ¡y chá»§ : " 3 times.(ßìÇ›8ı¿ÓÛ€2J$8c855951-fe28-4c5a-9d78-76febbed472e
+˜	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍüÚ¹ùÿÿÿÿ8€ÀÓÛ€2J$2fe1ebe3-4152-4924-a15e-bc33fbe8ac7a
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8°Öı¹€2J$0bd694bb-86b1-4798-bdca-54e42a47bf89
-i
-java:S1452 "&Remove usage of generic wildcard type.(°Ç‚™8ÁÖı¹€2J$f086adcd-20fa-4e06-8fbb-7365c832318f
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8„ÁÓÛ€2J$aff997e2-83cd-4a1a-8d7e-5f3f1de357a9
+
+java:S6856"7Bind path variable "statusValue" to a method parameter.(‹š´Ïøÿÿÿÿ8†ÁÓÛ€2J$5bd032dc-85ca-40c4-8489-75680d464334
 n
-java:S14521"&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8ÆÖı¹€2J$1300eb8b-54e2-4f33-aaba-7a8aa4e5bcb5
+java:S1452"&Remove usage of generic wildcard type.(¬ö¶ùûÿÿÿÿ8“ÁÓÛ€2J$8a754733-ec3d-455f-97db-635950e1fcd7
 n
-java:S1452<"&Remove usage of generic wildcard type.(åÁ¢Âûÿÿÿÿ8ËÖı¹€2J$9e8cf7b6-34b1-46a7-bfc1-ac91fc05e57c
+java:S1452-"&Remove usage of generic wildcard type.(ÍüÚ¹ùÿÿÿÿ8¿ÁÓÛ€2J$35c1d243-de8b-448a-a1e8-efde4752570e
+n
+java:S1452>"&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8ÍÁÓÛ€2J$36857463-5cb6-4bb7-86cd-7245b793eae9
+n
+java:S1452K"&Remove usage of generic wildcard type.(åÁ¢Âûÿÿÿÿ8ÚÁÓÛ€2J$37e90105-8567-42b1-bbbe-17dcde5b04c2
 i
-java:S1452I"&Remove usage of generic wildcard type.(º¤ÈÛ8Ÿ’…º€2J$071f0127-9628-4b4d-bea9-d8478a127b21
+java:S1452X"&Remove usage of generic wildcard type.(º¤ÈÛ8äÁÓÛ€2J$09687508-c4cb-4439-8056-019ec9db755f
+
+java:S1128"MRemove this unused import 'com.sapo.edu.backend.repository.OrdersRepository'.(¶áÙ8îÁÓÛ€2J$2394cba0-6408-4499-b63d-fce639e1539c
+
+java:S1128"URemove this unused import 'com.sapo.edu.backend.service.implement.OrdersServiceImpl'.(ş£…€şÿÿÿÿ8ïÁÓÛ€2J$70d96e82-59b7-4ded-af91-86c0c8d1cd38
+‰
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8ïÁÓÛ€2J$4cf2c325-c61d-49d5-944c-49de85b380cb
+‹
+java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8ğÁÓÛ€2J$901af88b-d5d2-47c2-b55b-c9ee310d5fe4
+
+java:S1128"FRemove this unused import 'org.springframework.stereotype.Controller'.(øŠ—Öùÿÿÿÿ8ñÁÓÛ€2J$be209d7b-c9d2-4392-b2b5-2f068f991739
+l
+java:S1128")Remove this unused import 'java.net.URI'.(Ö¦¨°8ñÁÓÛ€2J$eea148ef-572b-4116-b644-990976a380fd

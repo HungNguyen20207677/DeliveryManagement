@@ -1,5 +1,6 @@
 package com.sapo.edu.backend.controller;
 
+import com.sapo.edu.backend.dto.StatusBody;
 import com.sapo.edu.backend.model.Orders;
 import com.sapo.edu.backend.repository.OrdersRepository;
 import com.sapo.edu.backend.dto.ReceiptStaffBody;
@@ -24,14 +25,26 @@ public class OrdersController {
 
         @Autowired
         private OrdersService ordersService;
-        //danh sach don hang theo status
+        //so luong don hang theo status
+        @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+        @GetMapping(value= "/total?status={statusValue}")
+        public ResponseEntity<?> ordersByStatus(@RequestBody StatusBody statusBody){
+            try {
+                List<Object[]> value = ordersService.getDataByMonth();
+                if(value.isEmpty()){
+                    return ResponseEntity.badRequest().body("không có dữ liệu");
+                }
+                return ResponseEntity.ok(value);
+            }
+            catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
+        }
 
         //danh sach don hang theo shipper id
         @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
-        @PostMapping (value= "/{staffId}")
-        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer staffId, @RequestBody ReceiptStaffBody receiptStaffBody){
+        @PostMapping (value= "/{shipper_id}")
+        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer shipper_id){
             try {
-                List<Orders> staff = ordersService.findSalesStaff(staffId);
+                List<Orders> staff = ordersService.findSalesStaff(shipper_id);
                 if(staff.isEmpty()){
                     return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
                 }
@@ -55,6 +68,8 @@ public class OrdersController {
                         return ResponseEntity.ok().body(sum);
                 } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa phiếu giao hàng: " + e.getMessage());}
         }
+
+        //thong ke
     @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
     @GetMapping(value= "/data-by-month/")
     public ResponseEntity<?> dataByMonth(){

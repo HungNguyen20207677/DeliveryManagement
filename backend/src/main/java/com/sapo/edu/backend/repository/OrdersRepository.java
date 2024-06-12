@@ -15,29 +15,30 @@ import java.util.List;
 public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     Orders save(Orders orders);
 
-    Orders findOrdersByStatus(String status);
 
+    // tong tien ship theo moc thoi gian
     @Query("SELECT r, r.shippingCost FROM Orders r WHERE r.status = 'COMPLETED' AND DAY(r.createdAt) = DAY(:date) ")
     List<Object[]> getTotalMoneyByDay(Date date);
-
     @Query("SELECT r , r.shippingCost FROM Orders r WHERE r.status = 'COMPLETED' AND YEAR(r.createdAt) = YEAR(:date) AND WEEK(r.createdAt) = WEEK(:date)")
     List<Object[]> getTotalMoneyByWeek(Date date);
-
     @Query("SELECT r, r.shippingCost FROM Orders r WHERE r.status = 'COMPLETED' AND MONTH(r.createdAt) = MONTH(:date) ")
     List<Object[]> getTotalMoneyByMonth(Date date);
 
-    // Tìm phiếu giao hang theo shipperID
-    @Query("SELECT r FROM Orders r WHERE r.user.id = :staffId ")
-    List<Orders> findByShipperId( Integer staffId);
+    // so luong don hang theo status
+    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'PENDING'")
+    List<Object[]> getOrdersByPending();
+    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'CANCELED'")
+    List<Object[]> getOrdersByCanceled();
+    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'SHIPPING'")
+    List<Object[]> getOrdersByShipping();
+    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'AWAITING_PAYMENT'")
+    List<Object[]> getOrdersByAwaiting();
+    @Query("SELECT COUNT (r.id) AS CountIdValue FROM Orders r WHERE r.status = 'COMPLETED'")
+    List<Object[]> getOrdersByCompleted();
 
-
-    //tinh tong tien theo nhan vien ship moc thoi gian
-//    @Query("SELECT r.salesStaff, SUM(r.moneyValue) FROM Receipt r WHERE r.status = 'ACTIVE' AND DAY(r.createDate) = DAY(:date) GROUP BY r.salesStaff")
-//    List<Object[]> sumBySalesStaffByDay(Date date);
-//    @Query("SELECT r.salesStaff, SUM(r.moneyValue) FROM Receipt r WHERE r.status = 'ACTIVE' AND YEAR(r.createDate) = YEAR(:date) AND WEEK(r.createDate) = WEEK(:date) GROUP BY r.salesStaff")
-//    List<Object[]> sumBySalesStaffByWeek(Date date);
-//    @Query("SELECT r.salesStaff, SUM(r.moneyValue) FROM Receipt r WHERE r.status = 'ACTIVE' AND YEAR(r.createDate) = YEAR(:date) AND MONTH(r.createDate) = MONTH(:date) GROUP BY r.salesStaff")
-//    List<Object[]> sumBySalesStaffByMonth(Date date);
+    // danh sach don hang theo shipper_id
+    @Query("SELECT r FROM Orders r WHERE r.user.id = :shipper_id ")
+    List<Orders> findByShipperId( Integer shipper_id);
 
     // Biểu đồ
     @Query("SELECT YEAR(r.createdAt) AS Year, MONTH(r.createdAt) AS Month, SUM(r.shippingCost) AS TotalMoneyValue FROM Orders r WHERE r.status = 'COMPLETED' GROUP BY YEAR(r.createdAt), MONTH(r.createdAt) ORDER BY YEAR(r.createdAt), MONTH(r.createdAt)")

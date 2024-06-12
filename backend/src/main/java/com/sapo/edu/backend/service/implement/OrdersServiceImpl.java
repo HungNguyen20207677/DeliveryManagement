@@ -1,13 +1,14 @@
 package com.sapo.edu.backend.service.implement;
 
 import com.sapo.edu.backend.dto.ReceiptStaffBody;
+import com.sapo.edu.backend.dto.StatusBody;
 import com.sapo.edu.backend.exception.ErrorException;
 import com.sapo.edu.backend.repository.OrdersRepository;
 
 import com.sapo.edu.backend.model.Orders;
-import com.sapo.edu.backend.model.Users;
-
+import com.sapo.edu.backend.model.enumclasses.OrderStatus;
 import com.sapo.edu.backend.service.OrdersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,8 +29,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     // sum theo id nhan vien
-    public List<Orders> findSalesStaff(Integer staffId) {
-        return ordersRepository.findByShipperId(staffId);
+    public List<Orders> findSalesStaff(Integer shipper_id) {
+        return ordersRepository.findByShipperId(shipper_id);
     }
 
 
@@ -49,6 +50,25 @@ public class OrdersServiceImpl implements OrdersService {
             case MONTH:
                 // Lọc theo tháng
                 return ordersRepository.getTotalMoneyByMonth(currentDate);
+            default:
+                throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
+        }
+    }
+
+    public List<Object[]> findOrderByStatus(StatusBody statusBody) {
+        if (statusBody == null) {
+            throw new IllegalArgumentException("Không thể nhận giá trị null");
+        }
+        switch (statusBody.getStatusValue()) {
+
+            case CANCELED:
+                return ordersRepository.getOrdersByCanceled();
+            case PENDING:
+                return ordersRepository.getOrdersByPending();
+            case SHIPPING:
+                return ordersRepository.getOrdersByShipping();
+            case AWAITING_PAYMENT:
+                return ordersRepository.getOrdersByAwaiting();
             default:
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }

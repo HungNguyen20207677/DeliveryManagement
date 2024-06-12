@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection as we're using JWT
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").hasAuthority("ADMIN")
+                        .requestMatchers("/register").permitAll()
                         .requestMatchers("/orders-management/**").hasAuthority("DISTRIBUTOR")
                         .requestMatchers("/shippers-management/**").hasAuthority("MANAGER")
                         .requestMatchers("/shops-management/**").hasAuthority("MANAGER")
