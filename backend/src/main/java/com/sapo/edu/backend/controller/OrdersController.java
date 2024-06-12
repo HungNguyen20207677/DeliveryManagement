@@ -20,19 +20,28 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "orders-management/orders")
 public class OrdersController {
-
     @Autowired
     private OrdersService ordersService;
 
-    @GetMapping(value = "/")
-    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
-    public ResponseEntity<Page<Orders>> getAllReceipt(
-            @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "30") int size) {
-            PageRequest pageable = PageRequest.of(page, size);
-            Page<Orders> orders = ordersService.findAll(pageable);
-            return ResponseEntity.ok(orders);
-    }
+    // xoa don hang
+//    @PreAuthorize("hasAnyRole('EMPLOYEE' , 'ADMIN')")
+//    @DeleteMapping(value = "/{orderId}")
+//    public ResponseEntity<?> requireDeleteReceiptById(@PathVariable Integer orderId) {
+//        try {
+//            Orders deleteOrder = ordersService.deleteOrderById(orderId);
+//            return ResponseEntity.ok().body(deleteOrder);
+//        } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa đơn hàng: " + e.getMessage());}
+//    }
+    //danh sach orders
+//    @GetMapping(value = "/")
+//    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+//    public ResponseEntity<Page<Orders>> getAllReceipt(
+//            @RequestParam(name = "page", defaultValue = "0") int page,
+//            @RequestParam(name = "size", defaultValue = "30") int size) {
+//            PageRequest pageable = PageRequest.of(page, size);
+//            Page<Orders> orders = ordersService.findAll(pageable);
+//            return ResponseEntity.ok(orders);
+//    }
         //so luong don hang theo status
         @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
         @GetMapping(value= "/total?status={statusValue}")

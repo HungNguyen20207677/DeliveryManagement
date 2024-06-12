@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 @Service
 public interface OrdersService {
-
-    Page<Orders> findAll(PageRequest pageable);
+//    Orders deleteOrderById(Integer id);
+//    Page<Orders> findAll(PageRequest pageable);
     List<Orders> findShipper(Integer shipper_id);
     List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
     List<Object[]> getDataById();

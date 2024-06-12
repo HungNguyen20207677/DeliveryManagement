@@ -25,14 +25,24 @@ public class OrdersServiceImpl implements OrdersService {
     public OrdersServiceImpl(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
+
+//    @Override
+//    public Orders deleteOrderById(Integer orderId) {
+//        Orders deleteOrder = ordersRepository.findOrderById(orderId);
+//        if (deleteOrder != null) {
+//            deleteOrder.setStatus(OrderStatus.CANCELED);
+//        }
+//
+//        return ordersRepository.save(deleteOrder);
+//    }
     // danh sach don hang
-    public Page<Orders> findAll(PageRequest pageable) {
-        Page<Orders> find = ordersRepository.findAll(pageable);
-        if (find.isEmpty()) {
-            throw new ErrorException("không tìm thấy đơn hàng");
-        }
-        return find;
-    }
+//    public Page<Orders> findAll(PageRequest pageable) {
+//        Page<Orders> find = ordersRepository.findAll(pageable);
+//        if (find.isEmpty()) {
+//            throw new ErrorException("không tìm thấy đơn hàng");
+//        }
+//        return find;
+//    }
 
     // danh sach don hang theo id shipper
     public List<Orders> findShipper(Integer shipper_id) {

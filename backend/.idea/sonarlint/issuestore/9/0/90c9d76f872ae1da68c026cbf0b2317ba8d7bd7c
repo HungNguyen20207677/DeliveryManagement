@@ -1,6 +1,5 @@
 
-˜	java:S117&"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à»íøýÿÿÿÿ8´ü›Â€2J$57c672d8-7f2d-4bdc-8272-c1bf5d9553d8
+˜	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à»íøýÿÿÿÿ8‡ÄüÝ€2J$d8ce3c91-650a-4fc9-8a82-9ca343158d7e
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ëÿ©Ü€2J$225d1561-9f84-43cb-806a-3eb1b4d90142
-q
-java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+8À»³Ü€2J$66c10a8d-d08e-4ba9-9269-5616df268dfa
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8¨ÄüÝ€2J$e255ce05-250d-4e2f-8f81-7bffd8416902
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(ˆ—Å–þÿÿÿÿ8á®Çß€2J$bd52957c-00ac-48bf-a261-e1d5d036555f

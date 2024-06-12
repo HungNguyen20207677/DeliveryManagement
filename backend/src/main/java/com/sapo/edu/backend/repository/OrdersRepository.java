@@ -12,6 +12,7 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
     Orders save(Orders orders);
 
 
+
     // tong tien ship theo moc thoi gian
     @Query("SELECT r, r.shippingCost FROM Orders r WHERE r.status = 'COMPLETED' AND DAY(r.createdAt) = DAY(:date) ")
     List<Object[]> getTotalMoneyByDay(Date date);
