@@ -6,6 +6,7 @@ import com.sapo.edu.backend.service.security.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Logger;
@@ -14,7 +15,6 @@ import java.util.logging.Logger;
 public class AuthenticationController {
 
     private final AuthenticationService authService;
-    private static final Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 
     // Constructor to inject the AuthenticationService dependency
     public AuthenticationController(AuthenticationService authService) {
@@ -22,12 +22,10 @@ public class AuthenticationController {
     }
 
     // Endpoint to handle user registration requests
-    @PostMapping("/register")
+    @PostMapping("/admin/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody Users request
     ) {
-        // Log the received registration request
-        logger.info("Received registration request: " + request.toString());
 
         // Call the register method in AuthenticationService and return the response
         return ResponseEntity.ok(authService.register(request));
