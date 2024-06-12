@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Navbar from './components/navbar';
-import SideBar from './components/sidebar';
+import Navbar from './components/Navbar';
+import SideBar from './components/Sidebar';
 const App: React.FC = () => (
   <div>
     <Navbar />
