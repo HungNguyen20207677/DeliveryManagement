@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import './navbar.css';
+import '../assets/css/navbar.css';
 import logo from '../assets/logo-sapo-white.svg';
 const { Header } = Layout;
 
