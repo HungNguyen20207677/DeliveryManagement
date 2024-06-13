@@ -19,6 +19,13 @@ public class ShippersController {
     @Autowired
     private ShippersServiceImpl shippersService;
 
+    // Get all users
+    @GetMapping("/shippers-management/shippers")
+    public ResponseEntity<List<Users>> getAllUsers() {
+        return shippersService.getAllShippers();
+    }
+
+
     // Get a list of shippers with pagination
     @GetMapping("/shippers-management/shippers/pagination")
     public ResponseEntity<List<Users>> getShippersListPagination(@RequestParam @Valid int currentPage, @RequestParam @Valid int pageSize) {

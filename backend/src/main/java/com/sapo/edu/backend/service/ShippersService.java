@@ -11,5 +11,8 @@ import java.util.List;
 public interface ShippersService {
 
     // Get a list of shippers
+    ResponseEntity<List<Users>> getAllShippers();
+
+    // Get a list of shippers with pagination
     ResponseEntity<List<Users>> getShippersListPagination(int currentPage, int pageSize);
 }

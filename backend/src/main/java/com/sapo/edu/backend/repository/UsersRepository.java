@@ -17,7 +17,10 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
     // Searching the user by username
     Optional<Users> findByUsername(String username);
 
-    //Get list of users by role with pagination
+    // Get a list of users
+    List<Users> findAllByRole(Roles role);
+
+    // Get list of users by role with pagination
     List<Users> findAllByRole(Roles role, Pageable pageable);
 
 }

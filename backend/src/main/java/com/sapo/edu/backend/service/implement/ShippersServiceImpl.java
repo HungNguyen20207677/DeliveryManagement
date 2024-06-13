@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +21,16 @@ public class ShippersServiceImpl implements ShippersService {
 
     public ShippersServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+    }
+
+    @Override
+    public ResponseEntity<List<Users>> getAllShippers() {
+        try {
+            List<Users> users = new ArrayList<>(usersRepository.findAllByRole(Roles.SHIPPER));
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
