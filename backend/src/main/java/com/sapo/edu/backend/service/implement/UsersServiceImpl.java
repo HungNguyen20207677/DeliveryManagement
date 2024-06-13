@@ -99,7 +99,7 @@ public class UsersServiceImpl implements UsersService {
     public ResponseEntity<HttpStatus> deleteUser(@Valid int userId) {
         try {
             usersRepository.deleteById(userId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -108,7 +108,6 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public ResponseEntity<Page<Users>> getUsersListPagination(int currentPage, int pageSize) {
         try {
-//            Pageable firstPageWithTwoElements = (Pageable) PageRequest.of(currentPage, 10);
             Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by("updatedAt").ascending());
             Page<Users> categoriesList = usersRepository.findAll(pageable);
             if (categoriesList.isEmpty()) {

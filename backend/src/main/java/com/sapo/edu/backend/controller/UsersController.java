@@ -43,7 +43,7 @@ public class UsersController {
 
     // Get a list of user with pagination
     @GetMapping("/users/pagination")
-    public ResponseEntity<Page<Users>> getUsersListByName(@RequestParam @Valid int currentPage, @RequestParam @Valid int pageSize) {
+    public ResponseEntity<Page<Users>> getUsersListPagination(@RequestParam @Valid int currentPage, @RequestParam @Valid int pageSize) {
         return usersService.getUsersListPagination(currentPage, pageSize);
     }
 }
