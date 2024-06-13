@@ -6,12 +6,19 @@ import com.sapo.edu.backend.model.Users;
 import com.sapo.edu.backend.repository.UsersRepository;
 import com.sapo.edu.backend.service.UsersService;
 import jakarta.validation.Valid;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +35,16 @@ public class UsersServiceImpl implements UsersService {
     public UsersServiceImpl(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public ResponseEntity<List<Users>> getAllUsers() {
+        try {
+            List<Users> users = new ArrayList<>(usersRepository.findAll());
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
@@ -83,6 +100,22 @@ public class UsersServiceImpl implements UsersService {
         try {
             usersRepository.deleteById(userId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Page<Users>> getUsersListPagination(int currentPage, int pageSize) {
+        try {
+//            Pageable firstPageWithTwoElements = (Pageable) PageRequest.of(currentPage, 10);
+            Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by("updatedAt").ascending());
+            Page<Users> categoriesList = usersRepository.findAll(pageable);
+            if (categoriesList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(categoriesList, HttpStatus.OK);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
