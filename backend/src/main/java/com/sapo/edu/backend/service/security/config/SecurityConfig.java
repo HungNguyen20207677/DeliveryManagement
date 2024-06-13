@@ -37,12 +37,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection as we're using JWT
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/orders-management/**").hasAuthority("DISTRIBUTOR")
-                        .requestMatchers("/shippers-management/**").hasAuthority("MANAGER")
-                        .requestMatchers("/shops-management/**").hasAuthority("MANAGER")
-                        .requestMatchers(HttpMethod.PUT,"/orders-management/orders/{id}").hasAuthority("MANAGER")
-                        .anyRequest().hasAnyAuthority("ADMIN") // Allow ADMIN to access every endpoint
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/orders-management/**").hasAnyAuthority("DISTRIBUTOR","ADMIN")
+                        .requestMatchers("/shippers-management/**", "/shops-management/**").hasAnyAuthority("MANAGER","ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/orders-management/orders/{id}").hasAnyAuthority("SHIPPER","ADMIN")
+                        .anyRequest().authenticated()
+
                 )
                 .userDetailsService(userDetailsService) // Set the custom UserDetailsService for authentication
                 .sessionManagement(session -> session
