@@ -24,14 +24,14 @@ public class OrdersController {
     private OrdersService ordersService;
 
         //so luong don hang theo status
-        @GetMapping("/total")
-        public ResponseEntity<?> ordersByStatus(@RequestParam @Valid StatusBody statusBody){
+        @PostMapping(value = "/total")
+        public ResponseEntity<?> getOrdersByStatus(@RequestBody StatusBody statusBody){
             try {
-                List<Object[]> value = ordersService.getOrdersByStatus(statusBody);
-                if(value.isEmpty()){
+                List<Object[]> status = ordersService.getOrdersByStatus(statusBody);
+                if(status.isEmpty()){
                     return ResponseEntity.badRequest().body("không có dữ liệu");
                 }
-                return ResponseEntity.ok(value);
+                return ResponseEntity.ok(status);
             }
             catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
         }
@@ -40,11 +40,11 @@ public class OrdersController {
         @GetMapping (value= "/")
         public ResponseEntity<?> receiptsByStaffId(@RequestParam @Valid Integer shipperId){
             try {
-                List<Orders> staff = ordersService.findShipper(shipperId);
-                if(staff.isEmpty()){
+                List<Orders> value = ordersService.findShipper(shipperId);
+                if(value.isEmpty()){
                     return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
                 }
-                return ResponseEntity.ok(staff);
+                return ResponseEntity.ok(value);
             }
             catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
 

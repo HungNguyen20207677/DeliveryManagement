@@ -3,6 +3,7 @@ package com.sapo.edu.backend.service.implement;
 import com.sapo.edu.backend.dto.ReceiptStaffBody;
 import com.sapo.edu.backend.dto.StatusBody;
 import com.sapo.edu.backend.exception.ErrorException;
+import com.sapo.edu.backend.model.enumclasses.OrderStatus;
 import com.sapo.edu.backend.repository.OrdersRepository;
 
 import com.sapo.edu.backend.model.Orders;
@@ -17,7 +18,7 @@ import java.util.List;
 @Service
 public class OrdersServiceImpl implements OrdersService {
     @Autowired
-    private final OrdersRepository ordersRepository;
+    private  OrdersRepository ordersRepository;
     @Autowired
     public OrdersServiceImpl(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
@@ -62,7 +63,8 @@ public class OrdersServiceImpl implements OrdersService {
         if (statusBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");
         }
-        switch (statusBody.getStatusValue()) {
+        OrderStatus status = statusBody.getStatusValue();
+        switch (status) {
 
             case CANCELED:
                 return ordersRepository.getOrdersByCanceled();
