@@ -47,3 +47,5 @@ t
 Dsrc/main/java/com/sapo/edu/backend/model/AuthenticationResponse.java,e\3\e34aaed2cb90158047b310ba2957f820793185a6
 f
 6src/main/java/com/sapo/edu/backend/dto/StatusBody.java,d\d\dddac04e97347fe358d93e6d99ff0d27e86ad2ac
+r
+Bsrc/main/java/com/sapo/edu/backend/controller/ShopsController.java,2\2\226e9f93546ebf9af0617609262d29d7ff569f99

@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,9 @@ public class Users implements UserDetails {
     @Column(name = "user_id")
     private Integer userId;
 
+    @OneToMany(mappedBy = "user")
+    private List<Orders> orders = new ArrayList<Orders>();
+
     @Column(name = "username")
     private String username;
 
@@ -36,14 +40,14 @@ public class Users implements UserDetails {
 
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)
-    Roles role;
+    private Roles role;
 
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
-    UserStatus status;
+    private UserStatus status;
 
     @Column(name = "so_tien_du_no")
     private double soTienDuNo = 0;
@@ -98,5 +102,102 @@ public class Users implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    // Setter & getter
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
+    public double getSoTienDuNo() {
+        return soTienDuNo;
+    }
+
+    public void setSoTienDuNo(double soTienDuNo) {
+        this.soTienDuNo = soTienDuNo;
+    }
+
+    public Date getLastCheckedAt() {
+        return lastCheckedAt;
+    }
+
+    public void setLastCheckedAt(Date lastCheckedAt) {
+        this.lastCheckedAt = lastCheckedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
