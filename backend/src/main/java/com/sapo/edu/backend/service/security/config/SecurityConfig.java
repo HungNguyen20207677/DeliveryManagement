@@ -38,9 +38,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers("/orders-management/**").permitAll()
+                        .requestMatchers("/orders-management/**").hasAnyAuthority("DISTRIBUTOR","ADMIN")
                         .requestMatchers("/shippers-management/**", "/shops-management/**").hasAnyAuthority("MANAGER","ADMIN")
-                        .requestMatchers(HttpMethod.PUT,"/orders-management/orders/{id}").permitAll()
+                        .requestMatchers(HttpMethod.PUT,"/orders-management/orders/{id}").hasAnyAuthority("SHIPPER","ADMIN")
                         .anyRequest().authenticated()
 
                 )
