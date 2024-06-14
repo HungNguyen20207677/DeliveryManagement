@@ -1,11 +1,6 @@
 
-r	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à»íøıÿÿÿÿ8…’„£2
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8õ’„£2
-]	java:S125"<This block of commented-out lines of code should be removed.(ˆ—Å–şÿÿÿÿ8†“„£2
-c
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8ë“„£2
-e
-java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8î“„£2
-K
-java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+8ï“„£2
+˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à»íøıÿÿÿÿ8Ëã–¹2J$a363ec5d-1dfa-4476-8390-170691316071
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8õ’„£2J$702f1142-37d2-408c-abca-d609b3316ca0
+f
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8àî¼2

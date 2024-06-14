@@ -49,3 +49,13 @@ f
 6src/main/java/com/sapo/edu/backend/dto/StatusBody.java,d\d\dddac04e97347fe358d93e6d99ff0d27e86ad2ac
 r
 Bsrc/main/java/com/sapo/edu/backend/controller/ShopsController.java,2\2\226e9f93546ebf9af0617609262d29d7ff569f99
+d
+4src/main/java/com/sapo/edu/backend/dto/ShopsDTO.java,7\3\73926b4904f655980babc74cbac0339c7c6d47eb
+d
+4src/main/java/com/sapo/edu/backend/dto/UsersDTO.java,0\b\0b8fb647bd5addb210bb2363aace1f66e53047d4
+r
+Bsrc/main/java/com/sapo/edu/backend/controller/UsersController.java,a\0\a0bb0add11720f55bf6efe3bc246873b536bbb54
+l
+<src/main/java/com/sapo/edu/backend/service/UsersService.java,e\3\e3a0030c4149f97ffc874f1c0936af2cbc219356
+
+Osrc/main/java/com/sapo/edu/backend/service/security/UserDetailsServiceImpl.java,6\0\60488f70f1ea71e32f3b835b89d80250db6151b2

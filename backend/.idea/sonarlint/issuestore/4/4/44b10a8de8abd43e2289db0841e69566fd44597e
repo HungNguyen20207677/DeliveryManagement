@@ -1,21 +1,30 @@
 
+–
+java:S11921"SDefine a constant instead of duplicating this literal "Lá»—i mÃ¡y chá»§: " 3 times.(ßìÇ›8³×ì¼2J$8dec675e-dcdf-46de-9423-f079b43231ac
 š
-java:S11924"WDefine a constant instead of duplicating this literal "khÃ´ng cÃ³ dá»¯ liá»‡u" 3 times.(Ô¶ã³8ò‹ÖÜ€2J$49d727bc-52d2-4709-9173-a7e01de837b4
+java:S1192 "WDefine a constant instead of duplicating this literal "khÃ´ng cÃ³ dá»¯ liá»‡u" 4 times.(Ô¶ã³8²×ì¼2J$eb22b341-0741-43c4-993f-ae99bbc7cb28
 —
-java:S11928"TDefine a constant instead of duplicating this literal "Lá»—i mÃ¡y chá»§ : " 3 times.(ßìÇ›8ó‹ÖÜ€2J$89ba8205-1383-4318-80e0-54885c27fdd6
-˜	java:S117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍüÚ¹ùÿÿÿÿ8õ‹ÖÜ€2J$fb554d56-96c9-40c8-bf40-eb8f6414f7c3
+java:S1192$"TDefine a constant instead of duplicating this literal "Lá»—i mÃ¡y chá»§ : " 3 times.(ßìÇ›8ù™í¼2J$49e553e5-82a9-4d68-b2db-067d20f5106a
+’	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚”±8´×ì¼2J$9ddbec1c-f52d-4cf1-b499-9e53c665c14f
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8„ÁÓÛ€2J$fe6faece-8ac4-4ff1-88a0-deaa5be8e7a0
-
-java:S6856/"7Bind path variable "statusValue" to a method parameter.(‹š´Ïøÿÿÿÿ8ŞŒÖÜ€2J$31f1b43e-3867-455c-866c-eed03404e43d
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8æ×ì¼2J$0bf56d31-a21f-4a39-bed3-95779727ed26
 n
-java:S14520"&Remove usage of generic wildcard type.(¬ö¶ùûÿÿÿÿ8ñŒÖÜ€2J$d6396189-9e01-4386-8f9e-e9069500958c
-]	java:S125"<This block of commented-out lines of code should be removed.(ù‹Û·ıÿÿÿÿ8ˆ–Åß€2
+java:S1452"&Remove usage of generic wildcard type.(ÒÕçÌûÿÿÿÿ8‘Øì¼2J$c50d5ac5-0c8d-4443-bfca-d5a11425be36
+h
+java:S1452)"&Remove usage of generic wildcard type.(‚”±8™Øì¼2J$ad4300ec-b676-4071-81fd-4ddb6cfd2a52
 n
-java:S1452>"&Remove usage of generic wildcard type.(ÍüÚ¹ùÿÿÿÿ8öŒÖÜ€2J$9c56b436-3e56-4f52-bab9-fc06c52e2de2
-n
-java:S1452O"&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8úŒÖÜ€2J$ae46cdb1-2549-4651-bb51-9cfa09d6c3eb
-n
-java:S1452\"&Remove usage of generic wildcard type.(åÁ¢Âûÿÿÿÿ8şŒÖÜ€2J$d307f91d-4204-4e62-9bce-7cc617290cc8
+java:S14527"&Remove usage of generic wildcard type.(Øû´šÿÿÿÿÿ8¡Øì¼2J$159b3af6-8f47-4507-a69b-919ba16a555e
 i
-java:S1452i"&Remove usage of generic wildcard type.(º¤ÈÛ8ã„İ€2J$bbe894cf-02af-43a0-8943-7f2862ad99fe
+java:S1452F"&Remove usage of generic wildcard type.(ğ¢©—8©Øì¼2J$189a41e3-daef-48f1-b83e-90e768232629
+n
+java:S1452V"&Remove usage of generic wildcard type.(åÁ¢Âûÿÿÿÿ8±Øì¼2J$f0781660-5be1-4172-b8b3-9ef18d98806f
+i
+java:S1452c"&Remove usage of generic wildcard type.(º¤ÈÛ8Âší¼2J$eeb72bfb-3f5b-4481-8936-76bc1bc0de48
+‰
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8¶Øì¼2J$2cdf2d1e-4198-45f5-82c8-8bdc8eb105ae
+‹
+java:S1128"HRemove this unused import 'org.springframework.data.domain.PageRequest'.(ºêâÚ8¶Øì¼2J$437c6dca-c514-402b-b769-b2ebc5cbc526
+
+java:S1128"FRemove this unused import 'org.springframework.stereotype.Controller'.(øŠ—Öùÿÿÿÿ8¶Øì¼2J$9d94cf12-27ea-4e7b-96ae-838ff77fbba5
+l
+java:S1128")Remove this unused import 'java.net.URI'.(Ö¦¨°8ÈØì¼2J$ec6c976c-6858-4287-88bc-dc8628b74b3b

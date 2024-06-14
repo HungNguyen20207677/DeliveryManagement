@@ -9,44 +9,27 @@ import com.sapo.edu.backend.model.Orders;
 import com.sapo.edu.backend.service.OrdersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 @Service
 public class OrdersServiceImpl implements OrdersService {
     @Autowired
     private final OrdersRepository ordersRepository;
-
     @Autowired
     public OrdersServiceImpl(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
 
-//    @Override
-//    public Orders deleteOrderById(Integer orderId) {
-//        Orders deleteOrder = ordersRepository.findOrderById(orderId);
-//        if (deleteOrder != null) {
-//            deleteOrder.setStatus(OrderStatus.CANCELED);
-//        }
-//
-//        return ordersRepository.save(deleteOrder);
-//    }
-    // danh sach don hang
-//    public Page<Orders> findAll(PageRequest pageable) {
-//        Page<Orders> find = ordersRepository.findAll(pageable);
-//        if (find.isEmpty()) {
-//            throw new ErrorException("không tìm thấy đơn hàng");
-//        }
-//        return find;
-//    }
-
     // danh sach don hang theo id shipper
     public List<Orders> findShipper(Integer shipper_id) {
         return ordersRepository.findByShipperId(shipper_id);
+    }
+
+    public List<Orders> getTotalCODByShopId(Integer shopId) {
+        return ordersRepository.getTotalCODByShopId(shopId);
     }
 
     public List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody) {
@@ -55,7 +38,6 @@ public class OrdersServiceImpl implements OrdersService {
         }
         Date currentDate = new Date();
         switch (receiptStaffBody.getTimeValue()) {
-
             case DAY:
                 // Lọc theo ngày
                 return ordersRepository.getTotalMoneyByDay(currentDate);
@@ -65,12 +47,18 @@ public class OrdersServiceImpl implements OrdersService {
             case MONTH:
                 // Lọc theo tháng
                 return ordersRepository.getTotalMoneyByMonth(currentDate);
+            case QUARTER:
+                // Lọc theo tháng
+                return ordersRepository.getTotalMoneyByQuarter(currentDate);
+            case YEAR:
+                // Lọc theo tháng
+                return ordersRepository.getTotalMoneyByYear(currentDate);
             default:
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
 
-    public List<Object[]> findOrderByStatus(StatusBody statusBody) {
+    public List<Object[]> getOrdersByStatus(StatusBody statusBody) {
         if (statusBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");
         }
@@ -84,10 +72,13 @@ public class OrdersServiceImpl implements OrdersService {
                 return ordersRepository.getOrdersByShipping();
             case AWAITING_PAYMENT:
                 return ordersRepository.getOrdersByAwaiting();
+            case COMPLETED:
+                return ordersRepository.getOrdersByCompleted();
             default:
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
+//
 
     //thong ke
     public List<Object[]> getDataByMonth(){
@@ -104,6 +95,8 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return (value);
     }
+
+
 
 
 }

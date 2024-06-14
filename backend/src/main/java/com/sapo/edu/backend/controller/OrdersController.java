@@ -5,13 +5,13 @@ import com.sapo.edu.backend.model.Orders;
 import com.sapo.edu.backend.dto.ReceiptStaffBody;
 import com.sapo.edu.backend.service.OrdersService;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -23,31 +23,11 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-    // xoa don hang
-//    @PreAuthorize("hasAnyRole('EMPLOYEE' , 'ADMIN')")
-//    @DeleteMapping(value = "/{orderId}")
-//    public ResponseEntity<?> requireDeleteReceiptById(@PathVariable Integer orderId) {
-//        try {
-//            Orders deleteOrder = ordersService.deleteOrderById(orderId);
-//            return ResponseEntity.ok().body(deleteOrder);
-//        } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa đơn hàng: " + e.getMessage());}
-//    }
-    //danh sach orders
-//    @GetMapping(value = "/")
-//    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
-//    public ResponseEntity<Page<Orders>> getAllReceipt(
-//            @RequestParam(name = "page", defaultValue = "0") int page,
-//            @RequestParam(name = "size", defaultValue = "30") int size) {
-//            PageRequest pageable = PageRequest.of(page, size);
-//            Page<Orders> orders = ordersService.findAll(pageable);
-//            return ResponseEntity.ok(orders);
-//    }
         //so luong don hang theo status
-        @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
-        @GetMapping(value= "/total?status={statusValue}")
-        public ResponseEntity<?> ordersByStatus(@RequestBody StatusBody statusBody){
+        @GetMapping("/total")
+        public ResponseEntity<?> ordersByStatus(@RequestParam @Valid StatusBody statusBody){
             try {
-                List<Object[]> value = ordersService.getDataByMonth();
+                List<Object[]> value = ordersService.getOrdersByStatus(statusBody);
                 if(value.isEmpty()){
                     return ResponseEntity.badRequest().body("không có dữ liệu");
                 }
@@ -57,9 +37,8 @@ public class OrdersController {
         }
 
         //danh sach don hang theo shipper id
-        @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
-        @PostMapping (value= "/{shipper_id}")
-        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer shipper_id){
+        @GetMapping (value= "/")
+        public ResponseEntity<?> receiptsByStaffId(@RequestParam @Valid Integer shipper_id){
             try {
                 List<Orders> staff = ordersService.findShipper(shipper_id);
                 if(staff.isEmpty()){
@@ -67,14 +46,11 @@ public class OrdersController {
                 }
                 return ResponseEntity.ok(staff);
             }
-            catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa phiếu thu: " + e.getMessage());}
+            catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
 
         }
 
-        //tong tien COD theo id shop
-
         //tổng tien ship
-        @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
         @PostMapping(value="/sum")
         public ResponseEntity<?> sumReport(@RequestBody ReceiptStaffBody receiptStaffBody){
                 try {
@@ -83,11 +59,29 @@ public class OrdersController {
                                 return ResponseEntity.badRequest().body("không có giá trị");
                         }
                         return ResponseEntity.ok().body(sum);
-                } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ khi xóa phiếu giao hàng: " + e.getMessage());}
+                } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
         }
 
+    //tong tien COD theo id shop
+    @RestController
+    public class OrderController {
+
+        @GetMapping("/codbyshop/{shopId}")
+        public ResponseEntity<?> getTotalCODByShopId(@PathVariable Integer shopId) {
+            try {
+                List<Orders> value = ordersService.getTotalCODByShopId(shopId);
+                if (value.isEmpty()) {
+                    return ResponseEntity.badRequest().body("không có dữ liệu");
+                }
+                return ResponseEntity.ok(value);
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());
+            }
+        }
+    }
+
+
         //thong ke
-    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
     @GetMapping(value= "/data-by-month/")
     public ResponseEntity<?> dataByMonth(){
         try {
@@ -100,7 +94,7 @@ public class OrdersController {
         catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
     }
 
-    @PreAuthorize("hasAnyRole('MANAGER' , 'ADMIN')")
+
     @GetMapping(value= "/data-by-id/")
     public ResponseEntity<?> dataById(){
         try {
