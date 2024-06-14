@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface OrdersService {
-//    Orders deleteOrderById(Integer id);
-//    Page<Orders> findAll(PageRequest pageable);
-    List<Orders> findShipper(Integer shipper_id);
+    List<Orders> findShipper(Integer shipperId);
 
     List<Orders> getTotalCODByShopId(Integer shopId);
 

@@ -38,9 +38,9 @@ public class OrdersController {
 
         //danh sach don hang theo shipper id
         @GetMapping (value= "/")
-        public ResponseEntity<?> receiptsByStaffId(@RequestParam @Valid Integer shipper_id){
+        public ResponseEntity<?> receiptsByStaffId(@RequestParam @Valid Integer shipperId){
             try {
-                List<Orders> staff = ordersService.findShipper(shipper_id);
+                List<Orders> staff = ordersService.findShipper(shipperId);
                 if(staff.isEmpty()){
                     return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
                 }
