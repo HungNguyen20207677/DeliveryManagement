@@ -37,14 +37,14 @@ public class OrdersController {
         }
 
         //danh sach don hang theo shipper id
-        @GetMapping (value= "/")
-        public ResponseEntity<?> receiptsByStaffId(@RequestParam @Valid Integer shipperId){
+        @GetMapping (value= "/{shipperId}")
+        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer shipperId){
             try {
-                List<Orders> value = ordersService.findShipper(shipperId);
-                if(value.isEmpty()){
-                    return ResponseEntity.badRequest().body("không tìm thấy nhân viên này");
+                List<Orders> shippper = ordersService.ordersListByShipId(shipperId);
+                if(shippper.isEmpty()){
+                    return ResponseEntity.badRequest().body("không tìm thấy shipper này");
                 }
-                return ResponseEntity.ok(value);
+                return ResponseEntity.ok(shippper);
             }
             catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
 

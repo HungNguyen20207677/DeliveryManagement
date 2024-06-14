@@ -32,7 +32,11 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Orders> getTotalCODByShopId(Integer shopId) {
         return ordersRepository.getTotalCODByShopId(shopId);
     }
+    // lay tt receipt theo id
+    public List<Orders> ordersListByShipId(Integer shipper_id) {
+                return ordersRepository.findByShipperId(shipper_id);
 
+    }
     public List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody) {
         if (receiptStaffBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");

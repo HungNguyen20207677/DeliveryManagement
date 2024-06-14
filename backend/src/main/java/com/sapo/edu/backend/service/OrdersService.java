@@ -14,6 +14,7 @@ public interface OrdersService {
     List<Orders> getTotalCODByShopId(Integer shopId);
 
     List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
+    List<Orders> ordersListByShipId(Integer shipperId);
     List<Object[]> getOrdersByStatus(StatusBody statusBody);
     List<Object[]> getDataById();
     List<Object[]> getDataByMonth();
