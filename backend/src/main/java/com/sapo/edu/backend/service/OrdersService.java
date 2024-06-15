@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface OrdersService {
-    List<Orders> findShipper(Integer shipperId);
-
-    List<Orders> getTotalCODByShopId(Integer shopId);
-
-    List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
+    List<Object[]> getTotalCODByShopId(Integer shopId);
     List<Orders> ordersListByShipId(Integer shipperId);
+    List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody);
     List<Object[]> getOrdersByStatus(StatusBody statusBody);
     List<Object[]> getDataById();
     List<Object[]> getDataByMonth();

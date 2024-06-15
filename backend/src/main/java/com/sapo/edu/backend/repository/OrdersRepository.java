@@ -46,7 +46,7 @@ public interface OrdersRepository extends JpaRepository<Orders,Integer> {
 
     // tong tien COD theo id shop
     @Query("SELECT SUM(r.COD) FROM Orders r WHERE r.status = 'COMPLETED' AND r.shop.id = :shopId")
-    List<Orders> getTotalCODByShopId(Integer shopId);
+    List<Object[]> getTotalCODByShopId(Integer shopId);
 
     // Biểu đồ
     @Query("SELECT YEAR(r.createdAt) AS Year, MONTH(r.createdAt) AS Month, SUM(r.shippingCost) AS TotalMoneyValue FROM Orders r WHERE r.status = 'COMPLETED' GROUP BY YEAR(r.createdAt), MONTH(r.createdAt) ORDER BY YEAR(r.createdAt), MONTH(r.createdAt)")

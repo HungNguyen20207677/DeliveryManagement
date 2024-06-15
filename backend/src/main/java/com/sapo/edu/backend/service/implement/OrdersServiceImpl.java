@@ -25,18 +25,16 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     // danh sach don hang theo id shipper
-    public List<Orders> findShipper(Integer shipper_id) {
+    public List<Orders> ordersListByShipId(Integer shipper_id) {
         return ordersRepository.findByShipperId(shipper_id);
     }
 
-    public List<Orders> getTotalCODByShopId(Integer shopId) {
+    //tong COD theo shopId
+    public List<Object[]> getTotalCODByShopId(Integer shopId) {
         return ordersRepository.getTotalCODByShopId(shopId);
     }
-    // lay tt receipt theo id
-    public List<Orders> ordersListByShipId(Integer shipper_id) {
-                return ordersRepository.findByShipperId(shipper_id);
 
-    }
+    //doanh thu theo moc thoi gian
     public List<Object[]> sumReport(ReceiptStaffBody receiptStaffBody) {
         if (receiptStaffBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");
@@ -53,16 +51,17 @@ public class OrdersServiceImpl implements OrdersService {
                 // Lọc theo tháng
                 return ordersRepository.getTotalMoneyByMonth(currentDate);
             case QUARTER:
-                // Lọc theo tháng
+                // Lọc theo quy
                 return ordersRepository.getTotalMoneyByQuarter(currentDate);
             case YEAR:
-                // Lọc theo tháng
+                // Lọc theo nam
                 return ordersRepository.getTotalMoneyByYear(currentDate);
             default:
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
 
+    //so luong don hang theo trang thai
     public List<Object[]> getOrdersByStatus(StatusBody statusBody) {
         if (statusBody == null) {
             throw new IllegalArgumentException("Không thể nhận giá trị null");
@@ -84,7 +83,6 @@ public class OrdersServiceImpl implements OrdersService {
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
-//
 
     //thong ke
     public List<Object[]> getDataByMonth(){
@@ -101,8 +99,5 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return (value);
     }
-
-
-
 
 }

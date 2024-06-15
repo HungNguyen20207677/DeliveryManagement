@@ -38,7 +38,7 @@ public class OrdersController {
 
         //danh sach don hang theo shipper id
         @GetMapping (value= "/{shipperId}")
-        public ResponseEntity<?> receiptsByStaffId(@PathVariable Integer shipperId){
+        public ResponseEntity<?> ordersByStaffId(@PathVariable Integer shipperId){
             try {
                 List<Orders> shippper = ordersService.ordersListByShipId(shipperId);
                 if(shippper.isEmpty()){
@@ -47,9 +47,20 @@ public class OrdersController {
                 return ResponseEntity.ok(shippper);
             }
             catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
-
         }
-
+    //tong tien COD theo id shop
+    @GetMapping(value= "/codbyshop/{shopId}")
+    public ResponseEntity<?> totalCODByShopId(@PathVariable Integer shopId) {
+        try {
+            List<Object[]> value = ordersService.getTotalCODByShopId(shopId);
+            if (value.isEmpty()) {
+                return ResponseEntity.badRequest().body("không có dữ liệu");
+            }
+            return ResponseEntity.ok(value);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());
+        }
+    }
         //tổng tien ship
         @PostMapping(value="/sum")
         public ResponseEntity<?> sumReport(@RequestBody ReceiptStaffBody receiptStaffBody){
@@ -61,25 +72,6 @@ public class OrdersController {
                         return ResponseEntity.ok().body(sum);
                 } catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());}
         }
-
-    //tong tien COD theo id shop
-    @RestController
-    public class OrderController {
-
-        @GetMapping("/codbyshop/{shopId}")
-        public ResponseEntity<?> getTotalCODByShopId(@PathVariable Integer shopId) {
-            try {
-                List<Orders> value = ordersService.getTotalCODByShopId(shopId);
-                if (value.isEmpty()) {
-                    return ResponseEntity.badRequest().body("không có dữ liệu");
-                }
-                return ResponseEntity.ok(value);
-            } catch (Exception e) {
-                return ResponseEntity.internalServerError().body("Lỗi máy chủ: " + e.getMessage());
-            }
-        }
-    }
-
 
         //thong ke
     @GetMapping(value= "/data-by-month/")
