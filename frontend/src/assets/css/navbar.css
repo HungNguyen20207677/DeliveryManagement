@@ -1,11 +1,16 @@
-/* Navbar.css */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 24px;
   background: #fff;
+  height: 64px;
   box-shadow: 0 2px 8px #f0f1f2;
+  z-index: 1;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .logo {
@@ -15,20 +20,20 @@
 
 .logo-img {
   height: 32px;
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
 .logo-text {
   font-size: 18px;
-  font-weight: bold;
+  color: #fff;
 }
 
 .user-menu {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .username {
   margin-left: 8px;
+  color: black;
 }
