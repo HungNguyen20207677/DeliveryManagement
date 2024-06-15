@@ -25,7 +25,7 @@ public class OrdersController {
 
         //so luong don hang theo status
         @PostMapping(value = "/total")
-        public ResponseEntity<?> getOrdersByStatus(@RequestBody StatusBody statusBody){
+        public ResponseEntity<?> getOrdersByStatus(@RequestBody @Valid StatusBody statusBody){
             try {
                 List<Object[]> status = ordersService.getOrdersByStatus(statusBody);
                 if(status.isEmpty()){
@@ -38,7 +38,7 @@ public class OrdersController {
 
         //danh sach don hang theo shipper id
         @GetMapping (value= "/{shipperId}")
-        public ResponseEntity<?> ordersByStaffId(@PathVariable Integer shipperId){
+        public ResponseEntity<?> ordersByStaffId(@PathVariable @Valid Integer shipperId){
             try {
                 List<Orders> shippper = ordersService.ordersListByShipId(shipperId);
                 if(shippper.isEmpty()){
@@ -50,7 +50,7 @@ public class OrdersController {
         }
     //tong tien COD theo id shop
     @GetMapping(value= "/codbyshop/{shopId}")
-    public ResponseEntity<?> totalCODByShopId(@PathVariable Integer shopId) {
+    public ResponseEntity<?> totalCODByShopId(@PathVariable @Valid Integer shopId) {
         try {
             List<Object[]> value = ordersService.getTotalCODByShopId(shopId);
             if (value.isEmpty()) {
@@ -63,7 +63,7 @@ public class OrdersController {
     }
         //tổng tien ship
         @PostMapping(value="/sum")
-        public ResponseEntity<?> sumReport(@RequestBody ReceiptStaffBody receiptStaffBody){
+        public ResponseEntity<?> sumReport(@RequestBody @Valid ReceiptStaffBody receiptStaffBody){
                 try {
                         List<Object[]> sum = ordersService.sumReport(receiptStaffBody);
                         if(sum.isEmpty()){
@@ -85,8 +85,6 @@ public class OrdersController {
         }
         catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
     }
-
-
     @GetMapping(value= "/data-by-id/")
     public ResponseEntity<?> dataById(){
         try {
@@ -98,5 +96,4 @@ public class OrdersController {
         }
         catch (Exception e) {return ResponseEntity.internalServerError().body("Lỗi máy chủ : " + e.getMessage());}
     }
-
 }

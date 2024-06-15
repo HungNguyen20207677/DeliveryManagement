@@ -1,4 +1,6 @@
 
-˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı»Â£úÿÿÿÿ8´«³Á2J$b7b95b2d-2d37-42ea-b382-bf80f8215f72
+˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı»Â£úÿÿÿÿ8´«³Á2J$d9f3599d-7a2c-4202-aa2f-c7efef6bca0d
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹Ä–Á2J$0e2d5157-223e-4be0-a3ad-20475801e796
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‹Ä–Á2J$84e16327-7348-4beb-9bc4-1a276955fa3d
+Œ
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8¬Ê¥Ï2J$eab49cbf-2844-4f17-9afd-d5559e04ec95

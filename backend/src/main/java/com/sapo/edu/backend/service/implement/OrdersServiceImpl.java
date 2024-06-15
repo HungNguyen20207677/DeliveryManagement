@@ -5,7 +5,6 @@ import com.sapo.edu.backend.dto.StatusBody;
 import com.sapo.edu.backend.exception.ErrorException;
 import com.sapo.edu.backend.model.enumclasses.OrderStatus;
 import com.sapo.edu.backend.repository.OrdersRepository;
-
 import com.sapo.edu.backend.model.Orders;
 import com.sapo.edu.backend.service.OrdersService;
 
@@ -60,7 +59,6 @@ public class OrdersServiceImpl implements OrdersService {
                 throw new IllegalArgumentException("Giá trị không hợp lệ cho timeValue");
         }
     }
-
     //so luong don hang theo trang thai
     public List<Object[]> getOrdersByStatus(StatusBody statusBody) {
         if (statusBody == null) {
@@ -68,7 +66,6 @@ public class OrdersServiceImpl implements OrdersService {
         }
         OrderStatus status = statusBody.getStatusValue();
         switch (status) {
-
             case CANCELED:
                 return ordersRepository.getOrdersByCanceled();
             case PENDING:
@@ -99,5 +96,4 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return (value);
     }
-
 }
